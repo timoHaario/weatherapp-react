@@ -6,6 +6,14 @@ const pgp = require('pg-promise')(options);
 const connectionString = 'postgres://localhost:5432/mydb';
 const db = pgp(connectionString);
 
+/*
+INSERT INTO locations VALUES ('Tokyo', '35.6584421,139.7328635');
+INSERT INTO locations VALUES ('Helsinki','60.1697530,24.9490830');
+INSERT INTO locations VALUES ('New York','40.7406905,-73.9938438');
+INSERT INTO locations VALUES ('Amsterdam','52.3650691,4.9040238');
+INSERT INTO locations VALUES ('Dubai','25.092535,55.1562243');
+*/
+
 function getAllLocations(req, res, next) {
   db.any('SELECT * FROM locations')
     .then(function (data) {
