@@ -1,1 +1,1 @@
-web: yarn dev --prefix server
+web: yarn start --prefix server
