@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 
-app.get('/api/location/:name', db.getLocationByName);
+app.get('/api/location', db.getAllLocations);
 app.get('/api/location/:name/temperatures', db.getAllTemperaturesByLocation)
 app.post('/api/location/:name/temperatures', db.postTemperatureByLocation)
 

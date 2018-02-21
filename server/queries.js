@@ -1,22 +1,19 @@
 const promise = require('bluebird');
 
-const options = {
-  promiseLib: promise
-};
+const options = {promiseLib: promise};
 
 const pgp = require('pg-promise')(options);
 const connectionString = 'postgres://localhost:5432/mydb';
 const db = pgp(connectionString);
 
-function getLocationByName(req, res, next) {
-  const locationName = req.params.name;
-  db.one('SELECT * FROM locations WHERE LOWER(name) = LOWER($1)', locationName)
+function getAllLocations(req, res, next) {
+  db.any('SELECT * FROM locations')
     .then(function (data) {
       res.status(200)
         .json({
           status: 'success',
           data: data,
-          message: 'Retrieved location'
+          message: 'Retrieved all locations'
         });
     })
     .catch(function (err) {
@@ -41,9 +38,9 @@ function getAllTemperaturesByLocation(req, res, next) {
 }
 
 function postTemperatureByLocation(req, res, next) {
-  let unixTimeStamp = Math.floor(Date.now()/1000); //convert millis to seconds
+  let unixTimeStamp = Date.now();
   db.none('insert into temperatures(location, temperature, timestamp)'
-   + 'values(${location}, ${temperature}, to_timestamp(' + unixTimeStamp + '))',
+   + 'values(${location}, ${temperature}, ' + unixTimeStamp + ')',
     req.body)
     .then(function () {
       res.status(200)
@@ -58,7 +55,7 @@ function postTemperatureByLocation(req, res, next) {
 }
 
 module.exports = {
+  getAllLocations: getAllLocations,
 	getAllTemperaturesByLocation: getAllTemperaturesByLocation,
-	getLocationByName: getLocationByName,
 	postTemperatureByLocation: postTemperatureByLocation
 };
