@@ -1,11 +1,11 @@
 const express = require('express');
-
 const app = express();
 const port = process.env.PORT || 5000;
-
 const db = require('./queries');
-
 const bodyParser = require('body-parser');
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.use(bodyParser.json());
 

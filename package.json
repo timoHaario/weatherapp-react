@@ -2,7 +2,7 @@
   "name": "weatherapp-react",
   "version": "1.0.0",
   "scripts": {
-    "postinstall": "cd server && yarn install && cd ../client && yarn install",
+    "postinstall": "cd server && yarn install && cd ../client && yarn build && cd ..",
     "start": "cd server && yarn start"
   }
 }
