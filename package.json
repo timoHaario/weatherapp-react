@@ -4,7 +4,7 @@
   "scripts": {
     "client": "cd ../client && yarn start",
     "server": "nodemon server.js",
-    "dev": "cd server && concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "dev": "cd server/ && concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
     "bluebird": "^3.5.1",
