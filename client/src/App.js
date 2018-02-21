@@ -24,8 +24,6 @@ class App extends Component {
     return body;
   };
 
-  createLocation
-
   render() {
     return (
       <div className="App">
