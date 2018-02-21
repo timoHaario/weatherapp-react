@@ -11,7 +11,7 @@ export default class temperatureForm extends Component {
       latestTemperatureDate: ''
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.postTemperature = this.postTemperature.bind(this);
   }
@@ -24,11 +24,16 @@ export default class temperatureForm extends Component {
     const location = this.props.location;
     const response = await fetch('/api/location/'+location+'/temperatures');
     const body = await response.json();
-    const latest = await body.data[body.data.length-1];
-    this.setState({latestTemperature: await latest.temperature, latestTemperatureDate: await latest.timestamp});
+    const length = await body.data.length;
+    if (length > 0) {
+      const latest = await body.data[length-1];
+      this.setState({latestTemperature: await latest.temperature, latestTemperatureDate: await latest.timestamp});
+    } else {
+      this.setState({latestTemperature: '0', latestTemperatureDate: 'Ei'})
+    }
   }
 
-  handleChange(event) {
+  handleInputChange(event) {
     this.setState({submitValue: event.target.value});
   }
 
@@ -94,7 +99,7 @@ export default class temperatureForm extends Component {
       <p>{this.getTimeFromEpoch(this.state.latestTemperatureDate)}</p>
       <form onSubmit={this.handleSubmit}>
         <label>
-          <input type="text" value={this.state.submitValue} onChange={this.handleChange} />
+          <input type="text" value={this.state.submitValue} onChange={this.handleInputChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>
