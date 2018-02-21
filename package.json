@@ -11,9 +11,9 @@
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "pg-promise": "^5.9.7"
+    "pg-promise": "^5.9.7",
+    "concurrently": "^3.5.0"
   },
   "devDependencies": {
-    "concurrently": "^3.5.0"
   }
 }
