@@ -1,1 +1,1 @@
-web: yarn postinstall
+web: yarn preinstall
