@@ -2,7 +2,7 @@
   "name": "weatherapp-react",
   "version": "1.0.0",
   "scripts": {
-    "postinstall": "cd server/ && npm install && cd ../client/ && npm install && cd ../ && yarn dev"
+    "postinstall": "cd server/ && npm install && cd ../client/ && npm install && cd ../ && yarn dev",
     "client": "cd ../client && yarn start",
     "server": "nodemon server.js",
     "dev": "cd server/ && concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
