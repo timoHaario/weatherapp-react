@@ -1,1 +1,1 @@
-web: yarn preinstall
+web: yarn dev --prefix server
