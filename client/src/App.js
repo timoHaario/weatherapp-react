@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-//import TemperatureForm from './components/temperatureForm.js';
+import TemperatureForm from './components/temperatureForm.js';
 
 class App extends Component {
-/*
+
   constructor(props) {
     super(props);
     this.state = {locations:[]};
@@ -23,7 +23,7 @@ class App extends Component {
 
     return body;
   };
-*/
+
   render() {
     return (
       <div className="App">
@@ -31,6 +31,11 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
+        
+        {this.state.locations.map(loc => {
+          return <TemperatureForm key={loc.name} location={loc.name}/>
+        })}
+        
       </div>
     );
   }
