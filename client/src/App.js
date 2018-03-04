@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import TemperatureForm from './components/temperatureForm.js';
+import LocationContainer from './components/locationContainer.js';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {locations:[]};
   }
 
@@ -27,15 +26,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Reactt</h1>
-        </header>
-        
         {this.state.locations.map(loc => {
-          return <TemperatureForm key={loc.name} location={loc.name}/>
-        })}
-        
+          return <LocationContainer key={loc.name} location={loc.name}/>
+        })} 
       </div>
     );
   }
