@@ -3,11 +3,8 @@ const promise = require('bluebird');
 const options = {promiseLib: promise};
 
 const pgp = require('pg-promise')(options);
-const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/mydb';
+const connectionString = (process.env.DATABASE_URL || 'postgres://localhost:5432/mydb') + '?ssl=true';
 const db = pgp(connectionString);
-
-console.log("ConnectionString: ");
-console.log(connectionString);
 
 function getAllLocations(req, res, next) {
   db.any('SELECT * FROM locations')
