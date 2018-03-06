@@ -12,5 +12,7 @@ app.use(bodyParser.json());
 app.get('/api/location', db.getAllLocations);
 app.get('/api/location/:name/temperatures', db.getAllTemperaturesByLocation)
 app.post('/api/location/:name/temperatures', db.postTemperatureByLocation)
+//datawipe for dev purposes
+app.get('/api/dev/wipedata', db.clearAllTemperatures)
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

@@ -55,7 +55,22 @@ function postTemperatureByLocation(req, res, next) {
     });
 }
 
+function clearAllTemperatures(req, res, next) {
+  db.none('delete from temperatures')
+    .then(function () {
+      res.status(200)
+        .json({
+          status: 'success',
+          message: 'Cleared all temperature data'
+        });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
 module.exports = {
+  clearAllTemperatures: clearAllTemperatures,
   getAllLocations: getAllLocations,
 	getAllTemperaturesByLocation: getAllTemperaturesByLocation,
 	postTemperatureByLocation: postTemperatureByLocation

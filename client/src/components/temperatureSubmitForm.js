@@ -34,7 +34,7 @@ export default class temperatureSubmitForm extends Component {
     let temperature = this.state.submitValue;
 
     if(!this.validateTemperature(temperature)) {
-      console.log("Invalid temperature value")
+      console.log("Virheellinen arvo")
       return;
     }
 
@@ -53,7 +53,7 @@ export default class temperatureSubmitForm extends Component {
         console.log('Säähavainto lähetetty onnistuneesti');
         self.props.loadTemperatures();
       } else {
-        console.log("fail")
+        console.log("Lähetys ei onnistunut")
       }
     })
   }
@@ -68,7 +68,7 @@ export default class temperatureSubmitForm extends Component {
         <label>
           <input type="text" value={this.state.submitValue} onChange={this.handleInputChange} />
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Lähetä" />
       </form>
     );
   }
