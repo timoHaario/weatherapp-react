@@ -10,9 +10,9 @@ export default class locationContainer extends Component {
     this.state = {
       submitValue: '',
       allTemperatures: [],
+      latestTemperature: '',
       highestTemperature: '',
-      lowestTemperature: '',
-      latestTemperature: ''
+      lowestTemperature: ''
     };
   }
 
@@ -34,6 +34,7 @@ export default class locationContainer extends Component {
         let highest = this.findDailyRecordTemperature(temperatures, true);
         let lowest = this.findDailyRecordTemperature(temperatures, false);
         this.setState({
+          allTempeartures: temperatures,
           latestTemperature: latest,
           highestTemperature: highest,
           lowestTemperature: lowest
@@ -43,19 +44,24 @@ export default class locationContainer extends Component {
   }
 
   findDailyRecordTemperature(temperatures, highest) {
+    const ONE_DAY = 1000 * 60 * 60 * 24; //one day in milliseconds
     let record = temperatures[0];
     let arrayLength = temperatures.length;
+
     for (var i = 0; i < arrayLength; i++) {
+      const candidate = temperatures[i]
+      const withinOneDay = (Date.now() - ONE_DAY) < candidate.timestamp
       if (highest) {
-        if (temperatures[i].temperature > record.temperature) {
+        if (withinOneDay && candidate.temperature > record.temperature) {
           record = temperatures[i]
         } 
       } else {
-        if (temperatures[i].temperature < record.temperature) {
+        if (withinOneDay && candidate.temperature < record.temperature) {
           record = temperatures[i]
         }
       }
     }
+
     return record;
   }
 
