@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import LatestTemperature from './latestTemperature.js'
 import TemperatureSubmitForm from './temperatureSubmitForm.js'
 import DailyRecords from './dailyRecords.js'
+import HistoryList from './historyList.js'
 
 export default class locationContainer extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
+      historyListVisible: false,
       submitValue: '',
       allTemperatures: [],
       latestTemperature: '',
@@ -34,7 +36,7 @@ export default class locationContainer extends Component {
         let highest = this.findDailyRecordTemperature(temperatures, true);
         let lowest = this.findDailyRecordTemperature(temperatures, false);
         this.setState({
-          allTempeartures: temperatures,
+          allTemperatures: temperatures,
           latestTemperature: latest,
           highestTemperature: highest,
           lowestTemperature: lowest
@@ -61,8 +63,13 @@ export default class locationContainer extends Component {
         }
       }
     }
-
     return record;
+  }
+
+  toggleListVisibility () {
+    this.setState({
+      historyListVisible: !this.state.historyListVisible
+    })
   }
 
   render() {
@@ -72,6 +79,8 @@ export default class locationContainer extends Component {
         <LatestTemperature temperature={this.state.latestTemperature}/>
         <DailyRecords highest={this.state.highestTemperature} lowest={this.state.lowestTemperature} />
         <TemperatureSubmitForm location={this.props.location} loadTemperatures={this.loadTemperatures}/>
+        <button onClick={this.toggleListVisibility.bind(this)} >Näytä historia</button>
+        {this.state.historyListVisible && <HistoryList temperatures={this.state.allTemperatures} />}
       </div>
     );
   }
