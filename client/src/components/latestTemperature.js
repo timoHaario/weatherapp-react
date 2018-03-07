@@ -11,8 +11,8 @@ export default class latestTemperature extends Component {
   render() {
     return (
       <div>
-        <p>Lämpötila: {this.props.temperature ? this.props.temperature + '°c' : 'Ei havaintoja'} 
-        {this.props.date ? ' ' + this.getTimeFromEpoch(this.props.date) : '' }</p>
+        <p>Lämpötila: {this.props.temperature ? this.props.temperature.temperature + '°c' : 'Ei havaintoja'} 
+        {this.props.temperature ? ' ' + this.getTimeFromEpoch(this.props.temperature.timestamp) : '' }</p>
       </div>
     );
   }
