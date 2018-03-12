@@ -6,7 +6,9 @@ class App extends Component {
 
   constructor() {
     super();
-    this.state = {locations:[]};
+    this.state = {
+      locations:[]
+    };
   }
 
   componentDidMount() {
@@ -25,7 +27,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="parent-container">
         {this.state.locations.map(loc => {
           return <LocationContainer key={loc.name} location={loc.name}/>
         })} 

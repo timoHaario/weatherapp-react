@@ -3,6 +3,7 @@ import LatestTemperature from './latestTemperature.js'
 import TemperatureSubmitForm from './temperatureSubmitForm.js'
 import DailyRecords from './dailyRecords.js'
 import HistoryList from './historyList.js'
+import '../App.css';
 
 export default class locationContainer extends Component {
 
@@ -74,7 +75,7 @@ export default class locationContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="location-container">
         <p>{this.props.location}</p>
         <LatestTemperature temperature={this.state.latestTemperature}/>
         <DailyRecords highest={this.state.highestTemperature} lowest={this.state.lowestTemperature} />
