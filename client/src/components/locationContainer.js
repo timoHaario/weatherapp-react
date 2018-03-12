@@ -47,23 +47,27 @@ export default class locationContainer extends Component {
   }
 
   findDailyRecordTemperature(temperatures, highest) {
-    const ONE_DAY = 1000 * 60 * 60 * 24; //one day in milliseconds
-    let record = temperatures[0];
-    let arrayLength = temperatures.length;
+    let oneDayAgo = Date.now() - 1000 * 60 * 60 * 24; 
+    let temperaturesToday = temperatures.filter(temperature => oneDayAgo < temperature.timestamp);
+    let record = '';
+    let arrayLength = temperaturesToday.length;
 
-    for (var i = 0; i < arrayLength; i++) {
-      const candidate = temperatures[i]
-      const withinOneDay = (Date.now() - ONE_DAY) < candidate.timestamp
-      if (highest) {
-        if (withinOneDay && candidate.temperature > record.temperature) {
-          record = temperatures[i]
-        } 
-      } else {
-        if (withinOneDay && candidate.temperature < record.temperature) {
-          record = temperatures[i]
+    if (arrayLength > 0) {
+      record = temperaturesToday[0]
+      for (var i = 0; i < arrayLength; i++) {
+        const candidate = temperaturesToday[i]
+        if (highest) {
+          if (candidate.temperature > record.temperature) {
+            record = temperaturesToday[i]
+          } 
+        } else {
+          if (candidate.temperature < record.temperature) {
+            record = temperaturesToday[i]
+          }
         }
       }
     }
+
     return record;
   }
 
