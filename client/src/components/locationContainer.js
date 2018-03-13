@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
 import LatestTemperature from './latestTemperature.js'
 import TemperatureSubmitForm from './temperatureSubmitForm.js'
 import DailyRecords from './dailyRecords.js'
@@ -47,7 +47,7 @@ export default class locationContainer extends Component {
   }
 
   findDailyRecordTemperature(temperatures, highest) {
-    let oneDayAgo = Date.now() - 1000 * 60 * 60 * 24; 
+    let oneDayAgo = Date.now() - 1000 * 60 * 60 * 24;
     let temperaturesToday = temperatures.filter(temperature => oneDayAgo < temperature.timestamp);
     let record = '';
     let arrayLength = temperaturesToday.length;
@@ -59,7 +59,7 @@ export default class locationContainer extends Component {
         if (highest) {
           if (candidate.temperature > record.temperature) {
             record = temperaturesToday[i]
-          } 
+          }
         } else {
           if (candidate.temperature < record.temperature) {
             record = temperaturesToday[i]
@@ -80,7 +80,7 @@ export default class locationContainer extends Component {
   render() {
     return (
       <div className="location-container">
-        <p>{this.props.location}</p>
+        <p className="location-container-header">{this.props.location}</p>
         <LatestTemperature temperature={this.state.latestTemperature}/>
         <DailyRecords highest={this.state.highestTemperature} lowest={this.state.lowestTemperature} />
         <TemperatureSubmitForm location={this.props.location} loadTemperatures={this.loadTemperatures}/>

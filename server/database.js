@@ -28,11 +28,11 @@ function createLocationsTable() {
 }
 
 function insertLocations() {
-	db.none('INSERT INTO locations VALUES (\'Tokyo\', \'35.6584421,139.7328635\')').then(() => {return});
-	db.none('INSERT INTO locations VALUES (\'Helsinki\',\'60.1697530,24.9490830\')').then(() => {return});
-	db.none('INSERT INTO locations VALUES (\'New York\',\'40.7406905,-73.9938438\')').then(() => {return});
-	db.none('INSERT INTO locations VALUES (\'Amsterdam\',\'52.3650691,4.9040238\')').then(() => {return});
-	db.none('INSERT INTO locations VALUES (\'Dubai\',\'25.092535,55.1562243\')').then(() => {return});
+  db.none('INSERT INTO locations VALUES (\'Tokyo\', \'35.6584421,139.7328635\')').then(() => {return});
+  db.none('INSERT INTO locations VALUES (\'Helsinki\',\'60.1697530,24.9490830\')').then(() => {return});
+  db.none('INSERT INTO locations VALUES (\'New York\',\'40.7406905,-73.9938438\')').then(() => {return});
+  db.none('INSERT INTO locations VALUES (\'Amsterdam\',\'52.3650691,4.9040238\')').then(() => {return});
+  db.none('INSERT INTO locations VALUES (\'Dubai\',\'25.092535,55.1562243\')').then(() => {return});
 }
 
 function createTables() {

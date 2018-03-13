@@ -1,3 +1,13 @@
+@font-face {
+  font-family: Poppins-Regular;
+  src: url('./fonts/poppins/Poppins-Regular.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-Bold;
+  src: url('./fonts/poppins/Poppins-Bold.ttf'); 
+}
+
 .parent-container {
   padding: 0;
   margin: 0;
@@ -15,14 +25,26 @@
 }
 
 .location-container {
+  font-family: Poppins-Regular;
   border-radius: 10px;
   background: white;
-  color: #193441;
-  padding: 0px;
-  width: 400px;
+  padding: 10px;
+  min-width: 360px;
   min-height: 300px;
   margin-top: 10px;
-  
+  font-size: medium;
   line-height: 10 px;
-  font-size: 1.2em;
+}
+
+.location-container-header {
+  font-size: large;
+  font-family: Poppins-Bold;
+}
+
+.history-list {
+  line-height: 5px;
+}
+
+.latest-temperature {
+  font-size: large;
 }

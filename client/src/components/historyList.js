@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
 
 export default class historyList extends Component {
 
@@ -16,10 +16,14 @@ export default class historyList extends Component {
 
   render() {
     return (
-      <div>
+      <div className="history-list">
       {this.props.temperatures ?
-        this.props.temperatures.map(temperature => {
-         return <p key={temperature.timestamp}>{this.getTimeFromEpoch(temperature.timestamp)} {temperature.temperature + '°c'} </p>
+        this.props.temperatures.reverse().map(temperature => {
+          return (
+            <p key={temperature.timestamp}>
+              {this.getTimeFromEpoch(temperature.timestamp)} {temperature.temperature + '°c'} 
+            </p>
+          )
         }) : ''}
         
       </div>

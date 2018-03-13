@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
 import Validators from '../validators.js';
 
 export default class temperatureSubmitForm extends Component {
