@@ -9,7 +9,7 @@ export default class historyList extends Component {
     let day = date.getDate();
     let month = date.getMonth() + 1; //getMonth returns 0-11
     let hour = date.getHours();
-    let minute = date.getMinutes();
+    let minute = ('0'+date.getMinutes()).slice(-2);
     let formattedTime = weekday + " " + day + "." + month + " " + hour + ":" + minute //Ma 12.3 15:15
     return formattedTime;
   }
