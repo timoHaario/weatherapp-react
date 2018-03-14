@@ -8,7 +8,7 @@ export default class historyList extends Component {
     let weekday = weekdays[date.getDay()];
     let day = date.getDate();
     let month = date.getMonth() + 1; //getMonth returns 0-11
-    let hour = date.getHours();
+    let hour = ('0'+date.getHours()).slice(-2);
     let minute = ('0'+date.getMinutes()).slice(-2);
     let formattedTime = weekday + " " + day + "." + month + " " + hour + ":" + minute //Ma 12.3 15:15
     return formattedTime;
@@ -18,9 +18,9 @@ export default class historyList extends Component {
     return (
       <div className="history-list">
       {this.props.temperatures ?
-        this.props.temperatures.reverse().map(temperature => {
+        this.props.temperatures.slice().reverse().map(temperature => {
           return (
-            <p key={temperature.timestamp}>
+            <p className="history-value"key={temperature.timestamp}>
               {this.getTimeFromEpoch(temperature.timestamp)} {temperature.temperature + '°c'} 
             </p>
           )
