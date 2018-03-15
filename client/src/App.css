@@ -49,7 +49,11 @@ input::-webkit-inner-spin-button {
   position: relative;
 }
 
-.form-unit-text {
+.form-input-field {
+  max-width: 100px;
+}
+
+.form-input-unit-text {
   position: absolute;
   top: 3px;
   right: 5px;
