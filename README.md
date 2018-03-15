@@ -4,7 +4,7 @@ A simple weather app that lets you see and update temperature recordings in diff
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development.
 
 ### Prerequisites
 
@@ -24,12 +24,6 @@ after you can start the application locally by running
 ```
 yarn start
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Authors
 
