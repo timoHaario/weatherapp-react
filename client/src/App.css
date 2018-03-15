@@ -8,6 +8,11 @@
   src: url('./fonts/poppins/Poppins-Bold.ttf'); 
 }
 
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+
 .parent-container {
   padding: 0;
   margin: 0;
@@ -38,6 +43,18 @@
 .location-container-header {
   font-size: large;
   font-family: Poppins-Bold;
+}
+
+.form-input {
+  position: relative;
+}
+
+.form-unit-text {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  color: grey;
+  font-size: 13px;
 }
 
 .history-list {

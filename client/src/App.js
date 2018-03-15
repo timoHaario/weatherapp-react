@@ -12,17 +12,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.loadLocations();
+    this.loadLocationsToState();
   }
 
-  loadLocations = async () => {
+  loadLocationsToState = async () => {
     const response = await fetch('/api/location');
     const body = await response.json();
     this.setState({locations: await body.data});
 
     if (response.status !== 200) throw Error(body.message);
-
-    return body;
   };
 
   render() {

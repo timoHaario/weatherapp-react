@@ -65,8 +65,9 @@ export default class temperatureSubmitForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          <input type="text" value={this.state.submitValue} onChange={this.handleInputChange} />
+        <label className="form-input">
+          <input type="number" value={this.state.submitValue} onChange={this.handleInputChange} />
+          <span className="form-unit-text">°c</span>
         </label>
         <input type="submit" value="Lähetä" />
       </form>
