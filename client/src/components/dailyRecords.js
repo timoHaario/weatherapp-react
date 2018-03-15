@@ -11,10 +11,10 @@ export default class dailyRecords extends Component {
   render() {
     return (
       <div>
-        <p>Ylin 24h: {this.props.highest ? this.props.highest.temperature + '°c' : 'Ei havaintoja'} 
-        {this.props.highest ? ' ' + this.getHoursMinutesFromEpoch(this.props.highest.timestamp) : '' }</p>
-        <p>Alin 24h: {this.props.lowest ? this.props.lowest.temperature + '°c' : 'Ei havaintoja'} 
-        {this.props.lowest ? ' ' + this.getHoursMinutesFromEpoch(this.props.lowest.timestamp) : '' }</p>
+        <p>Ylin 24h: {this.props.highest.temperature + '°c'} 
+        {' ' + this.getHoursMinutesFromEpoch(this.props.highest.timestamp)}</p>
+        <p>Alin 24h: {this.props.lowest.temperature + '°c'} 
+        {' ' + this.getHoursMinutesFromEpoch(this.props.lowest.timestamp)}</p>
       </div>
     );
   }

@@ -77,14 +77,18 @@ export default class locationContainer extends Component {
     })
   }
 
+  hasRecordings() {
+    return this.state.allTemperatures.length > 0;
+  }
+
   render() {
     return (
       <div className="location-container">
         <p className="location-container-header">{this.props.location}</p>
         <LatestTemperature temperature={this.state.latestTemperature}/>
-        <DailyRecords highest={this.state.highestTemperature} lowest={this.state.lowestTemperature} />
+        {this.hasRecordings() && <DailyRecords highest={this.state.highestTemperature} lowest={this.state.lowestTemperature} />}
         <TemperatureSubmitForm location={this.props.location} loadTemperatures={this.loadTemperatures}/>
-        <button onClick={this.toggleListVisibility.bind(this)} >Näytä historia</button>
+        {this.hasRecordings() && <button onClick={this.toggleListVisibility.bind(this)} >Näytä historia</button>}
         {this.state.historyListVisible && <HistoryList temperatures={this.state.allTemperatures} />}
       </div>
     );
