@@ -1,9 +1,8 @@
 const promise = require('bluebird');
-
 const options = {promiseLib: promise};
-
 const pgp = require('pg-promise')(options);
-const connectionString = 'postgres://localhost:5432/mydb';
+const connectionString = (process.env.DATABASE_URL ? process.env.DATABASE_URL + '?ssl=true' : 'postgres://localhost:5432/mydb');
+
 const db = pgp(connectionString);
 
 function getAllLocations(req, res, next) {
@@ -54,7 +53,22 @@ function postTemperatureByLocation(req, res, next) {
     });
 }
 
+function clearAllTemperatures(req, res, next) {
+  db.none('delete from temperatures')
+    .then(function () {
+      res.status(200)
+        .json({
+          status: 'success',
+          message: 'Cleared all temperature data'
+        });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
 module.exports = {
+  clearAllTemperatures: clearAllTemperatures,
   getAllLocations: getAllLocations,
 	getAllTemperaturesByLocation: getAllTemperaturesByLocation,
 	postTemperatureByLocation: postTemperatureByLocation

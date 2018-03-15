@@ -2,17 +2,7 @@
   "name": "weatherapp-react",
   "version": "1.0.0",
   "scripts": {
-    "client": "cd client && yarn start",
-    "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
-  },
-  "dependencies": {
-    "bluebird": "^3.5.1",
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
-    "pg-promise": "^5.9.7"
-  },
-  "devDependencies": {
-    "concurrently": "^3.5.0"
+    "postinstall": "cd server && yarn install && node database.js && cd ../client && yarn install && yarn build && cd ..",
+    "start": "cd server && yarn start"
   }
 }
