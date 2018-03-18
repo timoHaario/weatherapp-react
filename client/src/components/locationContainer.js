@@ -3,6 +3,7 @@ import LatestTemperature from './latestTemperature.js'
 import TemperatureSubmitForm from './temperatureSubmitForm.js'
 import DailyRecords from './dailyRecords.js'
 import HistoryList from './historyList.js'
+import LocationHeader from './locationHeader.js'
 import '../App.css';
 
 export default class locationContainer extends Component {
@@ -20,14 +21,18 @@ export default class locationContainer extends Component {
   }
 
   componentDidMount() {
-    this.loadTemperatures(this.props.location);
+    this.loadTemperatures();
   }
 
   loadTemperatures = async() => {
     const location = this.props.location;
-    const response = await fetch('/api/location/'+location+'/temperatures');
-    const body = await response.json();
-    this.updateTemperatures(body.data);
+    try {
+      const response = await fetch('/api/location/'+location+'/temperatures');
+      const body = await response.json();
+      this.updateTemperatures(body.data);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   updateTemperatures(temperatures) {
@@ -49,29 +54,22 @@ export default class locationContainer extends Component {
   findDailyRecordTemperature(temperatures, highest) {
     let oneDayAgo = Date.now() - 1000 * 60 * 60 * 24;
     let temperaturesToday = temperatures.filter(temperature => oneDayAgo < temperature.timestamp);
-    let record = '';
     let arrayLength = temperaturesToday.length;
+    let record = '';
 
     if (arrayLength > 0) {
-      record = temperaturesToday[0]
-      for (var i = 0; i < arrayLength; i++) {
-        const candidate = temperaturesToday[i]
-        if (highest) {
-          if (candidate.temperature > record.temperature) {
-            record = temperaturesToday[i]
-          }
-        } else {
-          if (candidate.temperature < record.temperature) {
-            record = temperaturesToday[i]
-          }
-        }
+      const reducerHighest = (record, currentValue) => currentValue.temperature > record.temperature ? currentValue : record;
+      const reducerLowest  = (record, currentValue) => currentValue.temperature < record.temperature ? currentValue : record;
+      if(highest) {
+        record = temperaturesToday.reduce(reducerHighest)
+      } else { //lowest
+        record = temperaturesToday.reduce(reducerLowest)
       }
     }
-
     return record;
   }
 
-  toggleListVisibility () {
+  toggleHistoryListVisibility () {
     this.setState({
       historyListVisible: !this.state.historyListVisible
     })
@@ -81,14 +79,20 @@ export default class locationContainer extends Component {
     return this.state.allTemperatures.length > 0;
   }
 
+  hasRecordingsToday() {
+    let oneDayAgo = Date.now() - 1000 * 60 * 60 * 24;
+    let temperaturesToday = this.state.allTemperatures.filter(temperature => oneDayAgo < temperature.timestamp);
+    return temperaturesToday.length > 0;
+  }
+
   render() {
     return (
       <div className="location-container">
-        <p className="location-container-header">{this.props.location}</p>
+        <LocationHeader location={this.props.location} coordinates={this.props.coordinates}/>
         <LatestTemperature temperature={this.state.latestTemperature}/>
-        {this.hasRecordings() && <DailyRecords highest={this.state.highestTemperature} lowest={this.state.lowestTemperature} />}
+        {this.hasRecordingsToday() && <DailyRecords highest={this.state.highestTemperature} lowest={this.state.lowestTemperature} />}
         <TemperatureSubmitForm location={this.props.location} loadTemperatures={this.loadTemperatures}/>
-        {this.hasRecordings() && <button onClick={this.toggleListVisibility.bind(this)} >Näytä historia</button>}
+        {this.hasRecordings() && <button onClick={this.toggleHistoryListVisibility.bind(this)} >Näytä historia</button>}
         {this.state.historyListVisible && <HistoryList temperatures={this.state.allTemperatures} />}
       </div>
     );

@@ -16,18 +16,20 @@ class App extends Component {
   }
 
   loadLocationsToState = async () => {
-    const response = await fetch('/api/location');
-    const body = await response.json();
-    this.setState({locations: await body.data});
-
-    if (response.status !== 200) throw Error(body.message);
+    try {
+      const response = await fetch('/api/location');
+      const body = await response.json();
+      this.setState({locations: await body.data});
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   render() {
     return (
       <div className="parent-container">
         {this.state.locations.map(loc => {
-          return <LocationContainer key={loc.name} location={loc.name}/>
+          return <LocationContainer key={loc.name} location={loc.name} coordinates={loc.coordinates}/>
         })} 
       </div>
     );

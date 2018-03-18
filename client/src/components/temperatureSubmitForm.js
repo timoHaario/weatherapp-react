@@ -6,7 +6,8 @@ export default class temperatureSubmitForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      submitValue: ''
+      submitValue: '',
+      errorMessage: false
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -34,7 +35,7 @@ export default class temperatureSubmitForm extends Component {
     let temperature = this.state.submitValue;
 
     if(!this.validateTemperature(temperature)) {
-      console.log("Virheellinen arvo")
+      this.state.errorMessage = true;
       return;
     }
 
@@ -50,7 +51,7 @@ export default class temperatureSubmitForm extends Component {
       })
     }).then(function(res) {
       if(res.status === 200) {
-        console.log('Säähavainto lähetetty onnistuneesti');
+        self.state.errorMessage = false;
         self.props.loadTemperatures();
       } else {
         console.log("Lähetys ei onnistunut")
@@ -64,13 +65,16 @@ export default class temperatureSubmitForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label className="form-input">
-          <input className="form-input-field" type="number" value={this.state.submitValue} onChange={this.handleInputChange} />
-          <span className="form-input-unit-text">°c</span>
-        </label>
-        <input type="submit" value="Lähetä" />
-      </form>
+      <div>
+        {this.state.errorMessage ? <p className="form-error-message">Virheellinen arvo</p> : ''}
+        <form onSubmit={this.handleSubmit}>
+          <label className="form-input">
+            <input className="form-input-field" type="number" step="0.01" value={this.state.submitValue} onChange={this.handleInputChange} />
+            <span className="form-input-unit-text">°c</span>
+          </label>
+          <input type="submit" value="Lähetä" />
+        </form>
+      </div>
     );
   }
 }
