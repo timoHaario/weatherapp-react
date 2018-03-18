@@ -33,6 +33,16 @@ after you can start the application locally by running
 yarn start
 ```
 
+
+## Deployment
+
+This project can be easily deployed in Heroku, you just need to add a PostgreSQL addon in the project settings.
+One running application can be found here (auto deploys from this project's dev branch):
+
+```
+https://weather-heroku-test.herokuapp.com/
+```
+
 ## Authors
 
 * **Timo Haario**
