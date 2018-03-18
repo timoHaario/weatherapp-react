@@ -1,6 +1,14 @@
 # Weather app for climatologists
 
-A simple weather app that lets you see and update temperature recordings in different locations.
+A simple weather app that lets you see and update temperature recordings in different locations. Currently supported locations are
+
+```
+Tokio: 35.6584421,139.7328635
+Helsinki: 60.1697530,24.9490830
+New York: 40.7406905,-73.9938438
+Amsterdam: 52.3650691,4.9040238
+Dubai: 25.092535,55.1562243
+```
 
 ## Getting Started
 
