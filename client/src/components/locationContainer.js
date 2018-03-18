@@ -88,12 +88,31 @@ export default class locationContainer extends Component {
   render() {
     return (
       <div className="location-container">
-        <LocationHeader location={this.props.location} coordinates={this.props.coordinates}/>
+        <LocationHeader 
+          location={this.props.location} 
+          coordinates={this.props.coordinates}/>
+
         <LatestTemperature temperature={this.state.latestTemperature}/>
-        {this.hasRecordingsToday() && <DailyRecords highest={this.state.highestTemperature} lowest={this.state.lowestTemperature} />}
-        <TemperatureSubmitForm location={this.props.location} loadTemperatures={this.loadTemperatures}/>
-        {this.hasRecordings() && <button onClick={this.toggleHistoryListVisibility.bind(this)} >Näytä historia</button>}
-        {this.state.historyListVisible && <HistoryList temperatures={this.state.allTemperatures} />}
+
+        {this.hasRecordingsToday() && 
+          <DailyRecords 
+            highest={this.state.highestTemperature} 
+            lowest={this.state.lowestTemperature} />}
+
+        <TemperatureSubmitForm 
+          location={this.props.location} 
+          loadTemperatures={this.loadTemperatures}/>
+
+        {this.hasRecordings() && 
+          <button 
+            onClick={this.toggleHistoryListVisibility.bind(this)}>
+            Näytä historia
+          </button>}
+
+        {this.state.historyListVisible && 
+          <HistoryList 
+            temperatures={this.state.allTemperatures} />}
+            
       </div>
     );
   }

@@ -25,7 +25,6 @@ export default class historyList extends Component {
             </p>
           )
         }) : ''}
-        
       </div>
     );
   }
