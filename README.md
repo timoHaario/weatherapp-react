@@ -1,6 +1,6 @@
 # Weather app for climatologists
 
-A simple weather app that lets you see and update temperature recordings in different locations. Currently supported locations are
+A simple mobile friendly weather app that lets you see and update temperature recordings in different locations. Currently supported locations are
 
 ```
 Tokyo: 35.6584421,139.7328635
