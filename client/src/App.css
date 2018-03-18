@@ -1,28 +1,86 @@
-.App {
+@font-face {
+  font-family: Poppins-Regular;
+  src: url('./fonts/poppins/Poppins-Regular.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-Bold;
+  src: url('./fonts/poppins/Poppins-Bold.ttf'); 
+}
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+
+.parent-container {
+  padding: 0;
+  padding-bottom: 10px;
+  margin: 0;
+  
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  
+  flex-flow: row wrap;
+  justify-content: space-around;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.location-container {
+  font-family: Poppins-Regular;
+  border-radius: 10px;
+  background: white;
+  padding: 10px;
+  min-width: 300px;
+  margin: 5px;
+  font-size: medium;
+  line-height: 10 px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.location-container-header {
+  line-height: 2px;
 }
 
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
+.location-container-header-name {
   font-size: large;
+  font-family: Poppins-Bold;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.location-container-header-coordinates {
+  color: grey;
+  font-size: 11px;
+  font-family: Poppins-Regular;
+}
+
+.form-input {
+  position: relative;
+}
+
+.form-input-field {
+  max-width: 100px;
+}
+
+.form-error-message {
+  line-height: 0px;
+  color: red;
+  font-size: 12px;
+}
+
+.form-input-unit-text {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  color: grey;
+  font-size: 13px;
+}
+
+.history-list {
+  line-height: 5px;
+}
+
+.latest-temperature {
+  font-size: large;
 }

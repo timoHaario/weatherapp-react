@@ -1,38 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import LocationContainer from './components/locationContainer.js';
 
 class App extends Component {
 
-  state = {
-    response: ''
-  };
-
-  componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
+  constructor() {
+    super();
+    this.state = {
+      locations:[]
+    };
   }
 
-  callApi = async () => {
-    const response = await fetch('/api/hello');
-    const body = await response.json();
+  componentDidMount() {
+    this.loadLocationsToState();
+  }
 
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
+  loadLocationsToState = async () => {
+    try {
+      const response = await fetch('/api/location');
+      const body = await response.json();
+      this.setState({locations: await body.data});
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          {this.state.response}
-        </p>
+      <div className="parent-container">
+        {this.state.locations.map(loc => {
+          return <LocationContainer key={loc.name} location={loc.name} coordinates={loc.coordinates}/>
+        })} 
       </div>
     );
   }
